@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { BlogConfigModule } from './config';
+import { BlogConfigModule, DatabaseModule } from './core';
 
 @Module({
-  imports: [BlogConfigModule],
+  imports: [BlogConfigModule, DatabaseModule],
   controllers: [],
   providers: [],
 })
