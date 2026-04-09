@@ -15,7 +15,18 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"]
+      "@common": [
+        "src/common"
+      ],
+      "@common/*": [
+        "src/common/*"
+      ],
+      "@core/*": [
+        "src/core/*"
+      ],
+      "@modules/*": [
+        "src/modules/*"
+      ]
     },
     "incremental": true,
     "skipLibCheck": true,

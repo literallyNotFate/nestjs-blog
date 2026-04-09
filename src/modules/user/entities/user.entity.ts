@@ -1,8 +1,8 @@
+import { BaseEntity } from '@common/entities';
+import { Comment } from '@modules/comment/entities/comment.entity';
+import { Post } from '@modules/post/entities/post.entity';
+import { Role } from '@modules/role/entities/role.entity';
 import { Entity, Column, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
-import { BaseEntity } from '@/common';
-import { Role } from '@/modules/role/entities/role.entity';
-import { Post } from '@/modules/post/entities/post.entity';
-import { Comment } from '@/modules/comment/entities/comment.entity';
 
 @Entity('users')
 export class User extends BaseEntity {

@@ -4,7 +4,7 @@ import { resolve } from 'path';
 config({ path: resolve(__dirname, '.env.development.local') });
 
 import { runSeeders } from 'typeorm-extension';
-import { AppDataSource } from '@/core/database';
+import { AppDataSource } from '@core/database';
 
 async function run(): Promise<void> {
   try {

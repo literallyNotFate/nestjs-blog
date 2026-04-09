@@ -1,6 +1,6 @@
-import { BaseEntity } from '@/common';
-import { Post } from '@/modules/post/entities/post.entity';
-import { User } from '@/modules/user/entities/user.entity';
+import { BaseEntity } from '@common/entities';
+import { Post } from '@modules/post/entities/post.entity';
+import { User } from '@modules/user/entities/user.entity';
 import { Entity, Column, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
 
 @Entity('comments')

@@ -29,6 +29,8 @@
     "@nestjs/platform-fastify": "^11.1.18",
     "@nestjs/swagger": "^11.2.6",
     "@nestjs/typeorm": "^11.0.1",
+    "class-validator": "0.14.4",
+    "class-transformer": "0.5.1",
     "dotenv": "^17.4.1",
     "joi": "^18.1.2",
     "pg": "^8.20.0",
@@ -62,22 +64,5 @@
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.20.0"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": "src",
-    "testRegex": ".*\\.spec\\.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "collectCoverageFrom": [
-      "**/*.(t|j)s"
-    ],
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
   }
 }

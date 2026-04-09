@@ -1,4 +1,4 @@
-import { Role } from '@/modules/role/entities/role.entity';
+import { Role } from '@modules/role/entities/role.entity';
 import { DataSource, Repository } from 'typeorm';
 import { Seeder } from 'typeorm-extension';
 
