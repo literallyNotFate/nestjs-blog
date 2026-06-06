@@ -2,12 +2,11 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
-import { ApiProperty } from '@nestjs/swagger';
 
 export abstract class BaseEntity {
   @PrimaryGeneratedColumn('uuid')
-  @ApiProperty({ description: 'Unique identifier for entity (UUID)' })
   id: string;
 
   @CreateDateColumn({ name: 'created_at' })
@@ -15,4 +14,7 @@ export abstract class BaseEntity {
 
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
+
+  @DeleteDateColumn({ name: 'deleted_at' })
+  deletedAt: Date;
 }
