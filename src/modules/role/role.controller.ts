@@ -1,40 +1,53 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, ParseEnumPipe } from '@nestjs/common';
 import { RoleService } from './role.service';
 import {
   ApiBadRequestResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
+  ApiOperation,
+  ApiParam,
   ApiTags,
 } from '@nestjs/swagger';
 import { RoleResponseDto } from './dtos';
+import { RoleEnum } from '@common/enums';
 
 @Controller('role')
 @ApiTags('Role')
 export class RoleController {
   constructor(private readonly roleService: RoleService) {}
 
-  /// Get all roles
+  // Get roles
   @Get()
+  @ApiOperation({ summary: 'Get all available roles' })
   @ApiOkResponse({
-    description: 'List of all roles',
-    type: RoleResponseDto,
-    isArray: true,
+    description: 'List of all roles returned successfully',
+    type: [RoleResponseDto],
   })
   @ApiBadRequestResponse({ description: 'Bad Request' })
-  @ApiNotFoundResponse({ description: 'Roles were not found' })
-  async getAll(): Promise<RoleResponseDto[]> {
-    return await this.roleService.findAll();
+  getAll(): Promise<RoleResponseDto[]> {
+    return this.roleService.findAll();
   }
 
-  /// Get role by name
+  // Get role by name
   @Get(':name')
+  @ApiOperation({ summary: 'Get specific role details by its name' })
+  @ApiParam({
+    name: 'name',
+    enum: RoleEnum,
+    description: 'The unique name of the role',
+    example: RoleEnum.USER,
+  })
   @ApiOkResponse({
-    description: 'Роль найдена',
+    description: 'Role found and returned',
     type: RoleResponseDto,
   })
-  @ApiNotFoundResponse({ description: 'Role was not found by this name' })
-  @ApiBadRequestResponse({ description: 'Bad Request' })
-  async getByName(@Param('name') name: string): Promise<RoleResponseDto> {
-    return await this.roleService.findByName(name);
+  @ApiNotFoundResponse({
+    description: 'Role with provided name does not exist',
+  })
+  @ApiBadRequestResponse({ description: 'Invalid role name provided' })
+  getByName(
+    @Param('name', new ParseEnumPipe(RoleEnum)) name: RoleEnum,
+  ): Promise<RoleResponseDto> {
+    return this.roleService.findByName(name);
   }
 }

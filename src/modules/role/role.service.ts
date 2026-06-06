@@ -12,6 +12,7 @@ export class RoleService {
     private readonly roleRepository: Repository<Role>,
   ) {}
 
+  // Find all service
   async findAll(): Promise<RoleResponseDto[]> {
     const roles: Role[] = await this.roleRepository.find();
 
@@ -20,14 +21,22 @@ export class RoleService {
     });
   }
 
+  // Find by name service
   async findByName(name: string): Promise<RoleResponseDto> {
+    const role: Role = await this.findEntityByName(name);
+
+    return plainToInstance(RoleResponseDto, role, {
+      excludeExtraneousValues: true,
+    });
+  }
+
+  // Helper function to return entity by name
+  async findEntityByName(name: string): Promise<Role> {
     const role: Role | null = await this.roleRepository.findOneBy({ name });
     if (!role) {
       throw new NotFoundException(`Role with name "${name}" was not found`);
     }
 
-    return plainToInstance(RoleResponseDto, role, {
-      excludeExtraneousValues: true,
-    });
+    return role;
   }
 }
